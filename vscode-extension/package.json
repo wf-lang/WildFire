@@ -1,0 +1,30 @@
+{
+  "name": "wildfire",
+  "displayName": "Wildfire",
+  "description": "Syntax highlighting for the Wildfire esoteric programming language.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "wildfire",
+        "extensions": [
+          ".wf"
+        ],
+        "aliases": [
+          "Wildfire",
+          "wildfire"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "wildfire",
+        "scopeName": "source.wf",
+        "path": "./syntaxes/wildfire.tmLanguage.json"
+      }
+    ]
+  }
+}

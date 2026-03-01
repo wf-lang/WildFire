@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Wildfire",
+  "patterns": [
+    {
+      "include": "#commands"
+    }
+  ],
+  "repository": {
+    "commands": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.wildfire",
+          "match": "#.*$"
+        },
+        {
+          "name": "keyword.control.fire.wildfire",
+          "match": "@"
+        },
+        {
+          "name": "string.unquoted.tree.wildfire",
+          "match": "[Tt]"
+        },
+        {
+          "name": "variable.language.wind.wildfire",
+          "match": "[><\\^v]"
+        },
+        {
+          "name": "entity.name.function.pointer.wildfire",
+          "match": "[\\{\\}]"
+        },
+        {
+          "name": "support.function.io.wildfire",
+          "match": "[\\.,]"
+        },
+        {
+          "name": "keyword.control.conditional.wildfire",
+          "match": "\\?"
+        },
+        {
+          "name": "entity.name.tag.plant.wildfire",
+          "match": "P"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.wf"
+}
