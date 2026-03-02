@@ -2,26 +2,22 @@ import sys
 import os
 
 def exec(src):
-    grid = []
-    for line in src.split('\n'):
+    grid = {}
+    lines = src.split('\n')
+    start_x, start_y = -1, -1
+    has_plant_command = False
+    for y, line in enumerate(lines):
         line = line.strip('\r')
         if '#' in line:
             line = line[:line.index('#')]
-        grid.append(list(line))
-    height = len(grid)
-    width = max((len(row) for row in grid), default=0)
-    if width == 0:
-        return
-    for i in range(height):
-        grid[i].extend([' '] * (width - len(grid[i])))
-    start_x, start_y = -1, -1
-    has_plant_command = False
-    for y in range(height):
-        for x in range(width):
-            if grid[y][x] == '@':
+        for x, char in enumerate(line):
+            grid[(x, y)] = char
+            if char == '@':
                 start_x, start_y = x, y
-            if grid[y][x] == 'P':
+            if char == 'P':
                 has_plant_command = True
+    if not grid:
+        return
     if start_x == -1:
         sys.stderr.write("Error: Starting point '@' not found.\n")
         sys.exit(1)
@@ -33,11 +29,11 @@ def exec(src):
     dx, dy = 1, 0
     x, y = start_x, start_y
     has_planted_at_runtime = False
-    while 0 <= x < width and 0 <= y < height:
-        char = grid[y][x]
+    while True:
+        char = grid.get((x, y), ' ')
         if char == ' ':
             break
-        grid[y][x] = ' '
+        grid[(x, y)] = ' '
         if char == 'T':
             memory[pointer] = (memory[pointer] + 1) % 256
         elif char == 't':
@@ -67,8 +63,7 @@ def exec(src):
         elif char == 'P':
             has_planted_at_runtime = True
             nx, ny = x + dx, y + dy
-            if 0 <= nx < width and 0 <= ny < height:
-                grid[ny][nx] = chr(memory[pointer])
+            grid[(nx, ny)] = chr(memory[pointer])
         x += dx
         y += dy
     if not has_planted_at_runtime:
