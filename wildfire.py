@@ -35,9 +35,9 @@ def exec(src):
             break
         grid[(x, y)] = ' '
         if char == 'T':
-            memory[pointer] = (memory[pointer] + 1) % 256
+            memory[pointer] = (memory[pointer] + 1) % 1114112
         elif char == 't':
-            memory[pointer] = (memory[pointer] - 1) % 256
+            memory[pointer] = (memory[pointer] - 1) % 1114112
         elif char == '}':
             pointer += 1
         elif char == '{':
